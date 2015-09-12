@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.blackboard.com/bb-manifest-plugin"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.blackboard.com/bb-manifest-plugin http://fibbba.medu.com/xsd/bb-manifest-plugin.xsd">
+  <plugin>
+
+    <name value="GSTest MVCB2" />
+    <handle value="gstestmvcb2" />
+    <description value="GSTest MVCB2" />
+    <default-locale value="en_US" />
+
+    <version value="1.0" />
+    <requires>
+      <bbversion value="9.1.130000.0" />
+    </requires>
+
+    <vendor>
+      <id value="bb" />
+      <name value="Blackboard Inc." />
+      <url value="http://www.blackboard.com/" />
+      <description value="Blackboard Learn" />
+    </vendor>
+
+      <!-- Custom content types defined by this extension -->
+      <content-handlers>
+      <content-handler>
+         <name value="InsertItemLink"/>
+         <handle value= "resource/gstest-itemlink"/>
+         <http-actions>
+            <create value="/insertItemLink/create"/>
+            <view value="/insertItemLink/view"/>
+         </http-actions>
+         <icons>
+             <toolbar value="/resources/images/fast-forward.blue.gif"/>
+             <listitem value="/resources/images/fast-forward.blue.gif"/>
+         </icons>
+          <types>              
+			      <type>
+                <action-type value="mashup"/>
+            </type>            		  
+          </types>
+		  
+      </content-handler>
+      </content-handlers>
+
+    <schema-dirs>
+      <schema-dir dir-name="spring" />
+    </schema-dirs>
+
+    <permissions>
+      <permission type="persist" name="*" actions="create,modify,delete,persist" />
+      <permission type="attribute" name="user.*" actions="get,set" />
+      <permission type="java.util.PropertyPermission" name="*" actions="read,write" />
+      <permission type="socket" name="*" actions="connect" />
+      
+      <!-- We need these permissions to allow GSTest to auto-discover and wire beans together and Hibernate to interact with objects. -->
+      <permission type="java.lang.reflect.ReflectPermission" name="suppressAccessChecks" />
+      <permission type="java.lang.RuntimePermission" name="accessDeclaredMembers" />
+      <permission type="java.lang.RuntimePermission" name="createClassLoader" />
+      <permission type="java.lang.RuntimePermission" name="setContextClassLoader" />
+      <!-- permission type="java.io.FilePermission" name="${java.home}/lib/*" actions="read" / -->
+      <permission type="java.io.FilePermission" actions="read,write" name="&amp;lt;&amp;lt;ALL FILES&amp;gt;&amp;gt;" />
+    </permissions>
+
+  </plugin>
+</manifest>

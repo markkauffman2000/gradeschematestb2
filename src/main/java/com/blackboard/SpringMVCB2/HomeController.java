@@ -173,8 +173,10 @@ public class HomeController {
 
                             Double pp = gwas2.getPointsPossible();
                             String schemaValue = gwas2.getSchemaValue();
+                            // The following is the selected grading schema's (mbk-schema) letter grade.
                             String letterGrade = selectedGradingSchema.getSchemaValue(scoreValue, pp);
-                            String realLetterGrade = realSchema.getSchemaValue(scoreValue, pp);
+                            // The following is Learns built in Letter schema. Not used for this demo.
+                            String realLetterGrade = realSchema.getSchemaValue(scoreValue, pp); 
                             if(letterGrade!=null && !letterGrade.trim().equals("")){
                                 studentGrade = "gwas2.getSchemaValue:" + schemaValue + ", numGrade:" + numGrade + ", selectedGradingSchema.getSchemaValue:" + letterGrade;
                             }// end if (letterGrade!=null...

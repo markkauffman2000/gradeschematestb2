@@ -181,7 +181,7 @@ public class HomeController {
                             // The following is Learns built in Letter schema. Not used for this demo.
                             String schemaValue = realSchema.getSchemaValue(scoreValue, pp); 
                             if(letterGrade!=null && !letterGrade.trim().equals("")){
-                                studentGrade = "GradeSchema.getSchemaValue:" + schemaValue + ", numGrade:" + numGrade + ", selectedGradingSchema.getSchemaValue:" + letterGrade;
+                                studentGrade = "GradingSchema.getSchemaValue:" + schemaValue + ", numGrade:" + numGrade + ", selectedGradingSchema.getSchemaValue:" + letterGrade;
                             }// end if (letterGrade!=null...
                         }// end if(numGrade!=null...
                     }// end if(gwas2 == null || gwas2.isNullGrade()) { ...else {

@@ -99,11 +99,14 @@ public class HomeController {
                 }
                 
                 try {
-                
+                     // Version 1.0.1 modified to also show GradingSchema.getSChemaValue to display the value getSchemaValue of the default Schema named 'Letter'.
+                     // Version 1.0.2 modified to show crsmain PK1.
                     GradebookManager gradebookManager = GradebookManagerFactory.getInstanceWithoutSecurityCheck();
                     crsLoader = CourseDbLoader.Default.getInstance();
                     Course course = crsLoader.loadByCourseId("mbk-test-course");
-                    Id courseId = course.getId();
+                    Id courseId = course.getId(); 
+                    String courseIdString = course.getCourseId();
+                    
 
                     usrLoader = UserDbLoader.Default.getInstance();
                     User user = usrLoader.loadByUserName("mbk");
@@ -172,13 +175,13 @@ public class HomeController {
                             Double scoreValue = gwas2.getScoreValue();
 
                             Double pp = gwas2.getPointsPossible();
-                            String schemaValue = gwas2.getSchemaValue();
+                            
                             // The following is the selected grading schema's (mbk-schema) letter grade.
                             String letterGrade = selectedGradingSchema.getSchemaValue(scoreValue, pp);
                             // The following is Learns built in Letter schema. Not used for this demo.
-                            String realLetterGrade = realSchema.getSchemaValue(scoreValue, pp); 
+                            String schemaValue = realSchema.getSchemaValue(scoreValue, pp); 
                             if(letterGrade!=null && !letterGrade.trim().equals("")){
-                                studentGrade = "gwas2.getSchemaValue:" + schemaValue + ", numGrade:" + numGrade + ", selectedGradingSchema.getSchemaValue:" + letterGrade;
+                                studentGrade = "GradeSchema.getSchemaValue:" + schemaValue + ", numGrade:" + numGrade + ", selectedGradingSchema.getSchemaValue:" + letterGrade;
                             }// end if (letterGrade!=null...
                         }// end if(numGrade!=null...
                     }// end if(gwas2 == null || gwas2.isNullGrade()) { ...else {
@@ -196,7 +199,7 @@ public class HomeController {
                     String formattedDate = dateFormat.format(date);
                     model.addAttribute("serverTime", formattedDate );
                     // rOpts.addSuccessMessage("All is well! scoreValue:" + Double.toString(scoreValue) + " schemaValue:" + schemaValue);
-                    rOpts.addSuccessMessage("All is well! studentId:" + studentId + " studentGrade: " + studentGrade);
+                    rOpts.addSuccessMessage("All is well! courseIdString:" + courseIdString + " StudentGrade: " + studentGrade);
                 } catch (Exception e) {
                     rOpts.addErrorMessage("Had an exception!", e);
                     e.printStackTrace();
